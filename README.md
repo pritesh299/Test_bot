@@ -1,2 +1,3 @@
 Test_bot : An implemenattion of autonoumous navigation
-![image](https://github.com/user-attachments/assets/e0a45786-cb5f-4612-9ac9-380b9900a487)
+![image](https://github.com/user-attachments/assets/8a41b567-c8b1-4dc2-992d-396779d34b1c)
+
