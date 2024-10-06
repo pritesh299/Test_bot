@@ -1,9 +1,0 @@
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/uninstall.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/Test_bot_uninstall.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/test.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/edit_cache.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/rebuild_cache.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/list_install_components.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/install.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/install/local.dir
-/root/ros2_ws/src/Test_bot/build/Test_bot/CMakeFiles/install/strip.dir

@@ -1,4 +1,0 @@
-source;share/Test_bot/local_setup.bash
-source;share/Test_bot/local_setup.dsv
-source;share/Test_bot/local_setup.sh
-source;share/Test_bot/local_setup.zsh
