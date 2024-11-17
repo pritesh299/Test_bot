@@ -21,11 +21,17 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 
-    # Include the Gazebo launch file, provided by the gazebo_ros package
+    # Include the Gazebo launch file, specifying the world file
+    gazebo_world_file = os.path.join(
+        get_package_share_directory(package_name), 'worlds', 'localisation.world'
+    )
     gazebo = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
-             )
+        PythonLaunchDescriptionSource([
+            os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
+        ]),
+        launch_arguments={'world': gazebo_world_file}.items()
+    )
+    
     
     twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
     twist_mux = Node(
