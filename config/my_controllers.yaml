@@ -1,6 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 30
+    use_sim_time: true
 
     diff_cont:
       type: diff_drive_controller/DiffDriveController
@@ -17,8 +18,8 @@ diff_cont:
 
     left_wheel_names: ['left_wheel_joint']
     right_wheel_names: ['right_wheel_joint']
-    wheel_separation: 0.21
-    wheel_radius: 0.03
+    wheel_separation: 0.35
+    wheel_radius: 0.05
 
     use_stamped_vel: false
 
@@ -62,6 +63,14 @@ diff_cont:
 
 
 
+test_pid_controller:
+  ros__parameters:
+    dof_names:
+      - joint1
 
-# joint_broad:
-#   ros__parameters:
+    command_interface: position
+
+    reference_and_state_interfaces: ["position"]
+
+    gains:
+      joint1: {p: 1.0, i: 2.0, d: 10.0, i_clamp_max: 5.0, i_clamp_min: -5.0}
