@@ -14,60 +14,49 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
 
-    package_name='Test_bot' 
+    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
+    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
+
+    package_name='Test_bot' #<--- CHANGE ME
+
+    gazebo_params_path = os.path.join(
+                  get_package_share_directory(package_name),'config','gazebo_params.yaml')
+    
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','rsp.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true'}.items()
+                )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
     )
 
-    # Include the Gazebo launch file, specifying the world file
-    gazebo_world_file = os.path.join(
-        get_package_share_directory(package_name), 'worlds', 'localisation.world'
-    )
+    # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
-        ]),
-        launch_arguments={'world': gazebo_world_file}.items()
-    )
-    
-    
-    twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
-    twist_mux = Node(
-            package="twist_mux",
-            executable="twist_mux",
-            parameters=[twist_mux_params, {'use_sim_time': True}],
-            remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
-        )
+                PythonLaunchDescriptionSource([os.path.join(
+                    get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
+                    launch_arguments={'extra_gazebo_args': '--ros-args --params-file ' + gazebo_params_path }.items()
+
+             )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
-                                   '-entity', 'test_bot'],
+                                   '-entity', 'my_bot'],
                         output='screen')
-
-
-    diff_drive_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["diff_cont"],
-    )
-
-    joint_broad_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["joint_broad"],
-    )
-
-
-
+   
+    diff_drive_spwaner = Node(
+                        package='controller_manager', 
+                        executable='spawner',
+                        arguments=['diff_cont'])
+    
+    joint_broad_spwaner = Node(
+                        package='controller_manager', 
+                        executable='spawner',
+                        arguments=['joint_broad'])
+   
     # Launch them all!
     return LaunchDescription([
         rsp,
         gazebo,
-        twist_mux,
         spawn_entity,
-        diff_drive_spawner,
-        joint_broad_spawner
+        # diff_drive_spwaner,
+        # joint_broad_spwaner
     ])

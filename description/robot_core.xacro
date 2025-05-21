@@ -26,45 +26,42 @@
     <!-- BASE LINK -->
 
     <link name="base_link">
-
     </link>
 
  <!-- BASEFOOTPRINT LINK -->
 
     <joint name="base_footprint_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="base_footprint"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
         <origin xyz="0 0 0 " rpy="0 0 0"/>
     </joint>
-  <link name="base_footprint">
-
+    <link name="base_footprint">
     </link>
-
 
     <!-- CHASSIS LINK -->
 
     <joint name="chassis_joint" type="fixed">
         <parent link="base_link"/>
         <child link="chassis"/>
-        <origin xyz="-0.025 0 0"/>
+        <origin xyz="0 0 0"/>
     </joint>
 
     <link name="chassis">
         <visual>
-            <origin xyz="0.09 0 0.035"/>
             <geometry>
-                <box size="0.18 0.18 0.07"/>
+                <box size="0.6 0.4 0.2"/>
             </geometry>
-            <material name="white"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="blue"/>
         </visual>
         <collision>
-            <origin xyz="0.15 0 0.075"/>
             <geometry>
-                <box size="0.3 0.3 0.15"/>
+                <box size="0.6 0.4 0.2"/>
             </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
         </collision>
-        <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.15">
-            <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
+        <xacro:inertial_box mass="1" x="0.6" y="0.4" z="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
 
@@ -72,94 +69,477 @@
         <material>Gazebo/White</material>
     </gazebo>
 
-    <!-- LEFT WHEEL LINK -->
+    <link name="left_diff_link" />
 
-    <joint name="left_wheel_joint" type="continuous">
+    <joint name="left_diff_joint" type="fixed">
         <parent link="base_link"/>
-        <child link="left_wheel"/>
-        <origin xyz="0 0.105 0" rpy="-${pi/2} 0 0" />
-        <axis xyz="0 0 1"/>
+        <child link="left_diff_link"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="-${pi/2} 0 0" xyz="0 0.215 0"/> 
+        <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
     </joint>
 
-    <link name="left_wheel">
+    <link name="l_rod_1">
         <visual>
             <geometry>
-                <cylinder radius="0.03" length="0.025"/>
+                <box size="0.03 0.03 0.64"/>
             </geometry>
-            <material name="blue"/>
+            <material name="red"/>
+            <origin xyz="0 0 -0.32" rpy="0 0 0"/>
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="0.03" length="0.025"/>
+                <box size="0.03 0.03 0.64"/>
             </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.32" rpy="0 0 0"/>
         </collision>
-        <xacro:inertial_cylinder mass="0.1" length="0.025" radius="0.03">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.64">
+            <origin xyz="0 0 -0.32" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <link name="l_rod_2">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.28"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.14" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.28"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.14" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.28">
+            <origin xyz="0 0 -0.14" rpy="0 0 0"/>
+        </xacro:inertial_box>
+        
+    </link>
+
+    <link name="left_rod2_sub_link" />
+
+    <link name="l_rod_3">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.36">
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <link name="l_rod_4">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.36">
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <joint name="left_diff_rod1" type="fixed">
+        <parent link="left_diff_link"/>
+        <child link="l_rod_1"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="${pi/2} 0 -0.895" xyz="0 0 0"/> 
+    </joint>
+
+
+    <joint name="left_diff_rod2" type="fixed">
+        <parent link="left_diff_link"/>
+        <child link="l_rod_2"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="${pi/2} 0 0.785" xyz="0 0 0"/> 
+    </joint>
+
+    <joint name="left_rod2_sub_rod1_joint" type="fixed">
+        <parent link="left_rod2_sub_link"/>
+        <child link="l_rod_3"/>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/> 
+    </joint> 
+
+    <joint name="left_rod2_sub_joint" type="continuous">
+        <parent link="l_rod_2"/>
+        <child link="left_rod2_sub_link"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="-${pi/2} 0 0" xyz="0 0 -0.28"/> 
+        <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+    </joint>
+
+    <joint name="left_rod2_sub_rod2_joint" type="fixed">
+        <parent link="left_rod2_sub_link"/>
+        <child link="l_rod_4"/>
+        <origin rpy="${pi/2} 0 -1.588" xyz="0 0 0"/>  
+    </joint>
+
+    <link name="right_diff_link" />
+
+    <link name="r_rod_1">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.64"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.32" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.64"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.32" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.64">
+            <origin xyz="0 0 -0.32" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <link name="r_rod_2">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.28"/>
+            </geometry>
+            <material name="red"/>
+
+            <origin xyz="0 0 -0.14" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.28"/>
+            </geometry>
+            <material name="red"/>
+
+            <origin xyz="0 0 -0.14" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.28">
+            <origin xyz="0 0 -0.14" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <link name="right_rod2_sub_link" />
+
+    <link name="r_rod_3">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.36">
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <link name="r_rod_4">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.03 0.03 0.36"/>
+            </geometry>
+            <material name="red"/>
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.03" y="0.03" z="0.36">
+            <origin xyz="0 0 -0.18" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+
+    <joint name="right_diff_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="right_diff_link"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="-${pi/2} 0 0" xyz="0 -0.215 0"/> 
+        <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+    </joint>
+
+    <joint name="right_diff_rod1" type="fixed">
+        <parent link="right_diff_link"/>
+        <child link="r_rod_1"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="${pi/2} 0 -0.895" xyz="0 0 0"/> 
+    </joint>
+
+    <joint name="right_diff_rod2" type="fixed">
+        <parent link="right_diff_link"/>
+        <child link="r_rod_2"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="${pi/2} 0 0.785" xyz="0 0 0"/> 
+    </joint>
+
+    <joint name="right_rod2_sub_joint" type="continuous">
+        <parent link="r_rod_2"/>
+        <child link="right_rod2_sub_link"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="-${pi/2} 0 0" xyz="0 0 -0.28"/> 
+        <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+    </joint>
+
+    <joint name="right_rod2_sub_rod1_joint" type="fixed">
+        <parent link="right_rod2_sub_link"/>
+        <child link="r_rod_3"/>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/> 
+    </joint>
+
+    <joint name="right_rod2_sub_rod2_joint" type="fixed">
+        <parent link="right_rod2_sub_link"/>
+        <child link="r_rod_4"/>
+        <origin rpy="${pi/2} 0 -1.588" xyz="0 0 0"/>  
+    </joint>
+
+
+
+   <link name="left_wheel1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" radius="0.078" length="0.075" >
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
 
-    <gazebo reference="left_wheel">
-        <material>Gazebo/Blue</material>
-    </gazebo>
-
-   
-    <joint name="right_wheel_joint" type="continuous">
-        <parent link="base_link"/>
-        <child link="right_wheel"/>
-        <origin xyz="0 -0.105 0" rpy="${pi/2} 0 0" />
-        <axis xyz="0 0 -1"/>
-    </joint>
-
-    <link name="right_wheel">
+    <link name="left_wheel2">
         <visual>
             <geometry>
-                <cylinder radius="0.03" length="0.025"/>
+                <cylinder radius="0.078" length="0.075"/>
             </geometry>
-            <material name="blue"/>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
         </visual>
         <collision>
             <geometry>
-                      <cylinder radius="0.03" length="0.025"/>
+                <cylinder radius="0.078" length="0.075"/>
             </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
         </collision>
-        <xacro:inertial_cylinder mass="0.1" length="0.025" radius="0.03">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+        <xacro:inertial_cylinder mass="0.5" radius="0.078" length="0.075" >
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
-    <gazebo reference="right_wheel">
-        <material>Gazebo/Blue</material>
-    </gazebo>
 
-    <!-- CASTER WHEEL LINK -->
-
-    <joint name="caster_wheel_joint" type="fixed">
-        <parent link="chassis"/>
-        <child link="caster_wheel"/>
-        <origin xyz="0.13 0 0"/>
-    </joint>
-
-
-    <link name="caster_wheel">
+    <link name="left_wheel3">
         <visual>
             <geometry>
-                <sphere radius="0.03"/>
+                <cylinder radius="0.078" length="0.075"/>
             </geometry>
-            <material name="black"/>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
         </visual>
         <collision>
             <geometry>
-                <sphere radius="0.03"/>
+                <cylinder radius="0.078" length="0.075"/>
             </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
         </collision>
-        <xacro:inertial_sphere mass="0.1" radius="0.25">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_sphere>
+        <xacro:inertial_cylinder mass="0.5" radius="0.078" length="0.075" >
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
-    <gazebo reference="caster_wheel">
-        <material>Gazebo/Black</material>
-        <mu1 value="0.001"/>
-        <mu2 value="0.001"/>
+    <link name="right_wheel1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" radius="0.078" length="0.075" >
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <link name="right_wheel2">
+        <visual>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" radius="0.078" length="0.075" >
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <link name="right_wheel3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.078" length="0.075"/>
+            </geometry>
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+            <material name="white"/>
+        </collision>
+        <xacro:inertial_cylinder mass="0.5" radius="0.078" length="0.075" >
+            <origin xyz="0 0 0.0525" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <joint name="rear_left_wheel_joint" type="continuous">
+        <parent link="l_rod_3"/>
+        <child link="left_wheel2"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="-${pi/2} 0 0" xyz="0  0 -0.358"   />  
+   </joint>
+
+   <joint name="rear_right_wheel_joint" type="continuous">
+        <parent link="r_rod_3"/>
+        <child link="right_wheel2"/>
+        <axis xyz="0 0 -1"/> 
+        <origin rpy="${pi/2} 0 0" xyz="0  0 -0.358"   />  
+   </joint>
+
+    <joint name="middle_left_wheel_joint" type="continuous">
+        <parent link="l_rod_4"/>
+        <child link="left_wheel3"/>
+        <axis xyz="0 0 1"/> 
+        <origin rpy="-${pi/2} 0 0" xyz="0  0 -0.358"/>  
+   </joint>
+
+   <joint name="middle_right_wheel_joint" type="continuous">
+        <parent link="r_rod_4"/>
+        <child link="right_wheel3"/>
+        <axis xyz="0 0 -1"/> 
+        <origin rpy="${pi/2} 0 0" xyz="0  0 -0.358"/>
+   </joint>
+
+    <joint name="front_right_wheel_joint" type="continuous">
+        <parent link="base_footprint"/>
+        <child link="right_wheel1"/>
+        <axis xyz="0 0 -1"/> 
+        <origin xyz="0.49 -0.215 -0.4117" rpy="${pi/2} 0 0"/>
+   </joint>
+
+   <joint name="front_left_wheel_joint" type="continuous">
+        <parent link="base_footprint"/>
+        <child link="left_wheel1"/>
+        <axis xyz="0 0 1"/> 
+        <origin xyz="0.49 0.215 -0.4117" rpy="-${pi/2} 0 0"/>
+   </joint>
+<!-- 
+    <gazebo reference="left_wheel3">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.45"/>
+    </gazebo>
+    <gazebo reference="left_wheel2">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.45"/>
+    </gazebo>
+    <gazebo reference="left_wheel1">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.45"/>
+    </gazebo>
+    <gazebo reference="right_wheel3">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.45"/>
+    </gazebo>
+    <gazebo reference="right_wheel2">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.45"/>
+    </gazebo>
+    <gazebo reference="right_wheel1">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.5"/>
+        <mu2 value="0.45"/>
+    </gazebo> -->
+
+    <gazebo reference="left_wheel1">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.095"/>
+    </gazebo>
+        <gazebo reference="right_wheel1">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.095"/>
+    </gazebo>
+        <gazebo reference="left_wheel2">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.095"/>
+    </gazebo>
+        <gazebo reference="right_wheel2">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.095"/>
     </gazebo>
 
 </robot>
