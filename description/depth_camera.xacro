@@ -53,7 +53,7 @@
                 <alwaysOn>true</alwaysOn>
                 <imageTopicName>image_raw</imageTopicName>
                 <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-                <updateRate>30.0</updateRate>
+                <updateRate>20.0</updateRate>
                 <cameraName>usb_cam</cameraName>
                 <!-- <frameName>/robot_camera_link</frameName> -->
                 <CxPrime>320.5</CxPrime>
