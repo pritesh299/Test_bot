@@ -55,7 +55,7 @@ def generate_launch_description():
         arguments=[
             '-topic', 'robot_description',
             '-entity', 'my_bot',
-            '-x', '5', '-y', '0', '-z', '6.0'  # Adjust spawn position if needed
+            '-x', '5', '-y', '5', '-z', '6.0'  # Adjust spawn position if needed
         ],
         output='screen'
     )
