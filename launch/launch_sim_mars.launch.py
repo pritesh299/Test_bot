@@ -60,6 +60,11 @@ def generate_launch_description():
         output='screen'
     )
 
+    rtabmap = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            os.path.join(get_package_share_directory(package_name), 'launch', 'rtabmap.launch.py')
+        ])
+    )
     # Optional: Load your controllers here
     # diff_drive_spawner = Node(
     #     package='controller_manager',

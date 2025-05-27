@@ -489,37 +489,27 @@
         <axis xyz="0 0 1"/> 
         <origin xyz="0.49 0.215 -0.4117" rpy="-${pi/2} 0 0"/>
    </joint>
-<!-- 
-    <gazebo reference="left_wheel3">
-        <material>Gazebo/Grey</material>
-        <mu1 value="0.5"/>
-        <mu2 value="0.45"/>
-    </gazebo>
+
     <gazebo reference="left_wheel2">
         <material>Gazebo/Grey</material>
-        <mu1 value="0.5"/>
-        <mu2 value="0.45"/>
+        <mu1 value="0.2"/>
+        <mu2 value="0.195"/>
     </gazebo>
     <gazebo reference="left_wheel1">
         <material>Gazebo/Grey</material>
-        <mu1 value="0.5"/>
-        <mu2 value="0.45"/>
-    </gazebo>
-    <gazebo reference="right_wheel3">
-        <material>Gazebo/Grey</material>
-        <mu1 value="0.5"/>
-        <mu2 value="0.45"/>
+        <mu1 value="0.1"/>
+        <mu2 value="0.095"/>
     </gazebo>
     <gazebo reference="right_wheel2">
         <material>Gazebo/Grey</material>
-        <mu1 value="0.5"/>
-        <mu2 value="0.45"/>
+        <mu1 value="0.2"/>
+        <mu2 value="0.195"/>
     </gazebo>
     <gazebo reference="right_wheel1">
         <material>Gazebo/Grey</material>
-        <mu1 value="0.5"/>
-        <mu2 value="0.45"/>
-    </gazebo> -->
+        <mu1 value="0.1"/>
+        <mu2 value="0.095"/>
+    </gazebo>
 
 <!--
     <gazebo reference="left_wheel1">
@@ -553,8 +543,7 @@
         <mu2 value="0.595"/>
     </gazebo>
 -->
-
-<!-- Front Wheels -->
+<!-- 
 <gazebo reference="left_wheel1">
   <material>Gazebo/Grey</material>
   <mu1 value="0.9"/>
@@ -566,7 +555,6 @@
   <mu2 value="0.1"/>
 </gazebo>
 
-<!-- Middle Wheels -->
 <gazebo reference="left_wheel2">
   <material>Gazebo/Grey</material>
   <mu1 value="1.0"/>
@@ -578,7 +566,6 @@
   <mu2 value="1.0"/>
 </gazebo>
 
-<!-- Rear Wheels -->
 <gazebo reference="left_wheel3">
   <material>Gazebo/Grey</material>
   <mu1 value="0.9"/>
@@ -588,7 +575,7 @@
   <material>Gazebo/Grey</material>
   <mu1 value="0.9"/>
   <mu2 value="0.1"/>
-</gazebo>
+</gazebo> -->
 
 
 </robot>
